@@ -1,0 +1,36 @@
+.card-list-box {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  width: 30%;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.card-list-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.card-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  max-height: 500px;
+  overflow: auto;
+}
+
+@media (max-width: 768px) {
+  .card-list-box {
+    width: 90%;
+  }
+}

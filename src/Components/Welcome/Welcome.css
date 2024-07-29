@@ -1,0 +1,155 @@
+.welcome-box{
+    background-image: url('/images/taskImage.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 500px;
+}
+
+.welcome-start-information-box{
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+.welcome-title-box,
+.welcome-description-box,
+.welcome-author-box
+{
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 50%;
+    text-align: center;
+    transition: all 0.5s;
+    animation: fadeInLeft 2s;
+}
+
+.welcome-title-box h3{
+    font-size: 2rem;
+    font-weight: 700;
+    color: #FFF;
+}
+
+.welcome-description-box p{
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #FFF;
+}
+
+.welcome-author-box p{
+    font-size: 1rem;
+    font-weight: 500;
+    color: #FFF;
+}
+
+/* .welcome-title-box:hover,
+.welcome-description-box:hover,
+.welcome-author-box:hover
+{
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.welcome-author-box:hover p,
+.welcome-description-box:hover p,
+.welcome-title-box:hover h3
+{
+    color: #000;
+} */
+
+/* Animations */
+/* @keyframes fadeIn{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+} */
+
+@media (min-width:1024px) and (max-width: 1366px)
+{
+    .welcome-title-box,
+    .welcome-description-box,
+    .welcome-author-box
+    {
+        width: 60%;
+        padding: 15px;
+    }
+
+    .welcome-title-box h3{
+        font-size: 1.8rem;
+    }
+
+    .welcome-description-box p{
+        font-size: 1.1rem;
+    }
+
+    .welcome-author-box p{
+        font-size: 0.9rem;
+    }
+
+    .welcome-box{
+        height: 450px;
+    }
+}
+
+
+@media screen and (max-width: 1024px)
+{
+    .welcome-title-box,
+    .welcome-description-box,
+    .welcome-author-box
+    {
+        width: 70%;
+        padding: 15px;
+    }
+
+    .welcome-title-box h3{
+        font-size: 1.8rem;
+    }
+
+    .welcome-description-box p{
+        font-size: 1.1rem;
+    }
+
+    .welcome-author-box p{
+        font-size: 0.9rem;
+    }
+
+    .welcome-box{
+        height: 400px;
+    }
+
+}
+
+@media screen and (max-width:768px)
+{
+    .welcome-title-box,
+    .welcome-description-box,
+    .welcome-author-box
+    {
+        width: 80%;
+        padding: 10px;
+    }
+
+    .welcome-title-box h3{
+        font-size: 1.5rem;
+    }
+
+    .welcome-description-box p{
+        font-size: 1rem;
+    }
+
+    .welcome-author-box p{
+        font-size: 0.8rem;
+    }
+
+    .welcome-box{
+        height: 300px;
+    }
+}

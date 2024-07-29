@@ -1,0 +1,86 @@
+.instructions-box{
+    margin: 0 auto;
+    width: 80%;
+    padding: 30px;
+    background-color: rgba(1, 1, 1, 0.5);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    margin-top: 40px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.instruction-title-box,
+.instructions-steps-box {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 70%;
+    text-align: center;
+    transition: all 0.5s;
+    animation: fadeInLeft 2s;
+}
+
+.instructions-steps-box{
+    text-align: left;
+}
+
+.instruction-title-box h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #FFF;
+}
+
+.instructions-steps-box ol {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #FFF;
+    padding-left: 20px;
+}
+
+.instructions-steps-box ol li {
+    margin-top: 10px;
+    margin-left: 10px;
+    padding-left: 5px;
+}
+
+
+@media (min-width: 1024px) and (max-width: 1366px){
+    .instructions-box{
+        width: 90%;
+    }
+
+    .instruction-title-box,
+    .instructions-steps-box {
+        width: 90%;
+    }
+}
+
+
+@media screen and (max-width: 1024px){
+    .instructions-box{
+        width: 90%;
+    }
+
+    .instruction-title-box,
+    .instructions-steps-box {
+        width: 90%;
+    }
+    
+}
+
+
+@media screen and (max-width: 768px){
+    .instructions-box{
+        width: 90%;
+    }
+
+    .instruction-title-box,
+    .instructions-steps-box {
+        width: 90%;
+    }
+}

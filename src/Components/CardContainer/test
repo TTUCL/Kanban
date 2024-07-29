@@ -1,0 +1,142 @@
+import React, { useState, useEffect } from 'react';
+import './CardContainer.css';
+import CardList from '../CardList/CardList';
+import DeleteCard from '../DeleteCard/DeleteCard';
+import { DndContext } from '@dnd-kit/core';
+import { v4 as uuidv4 } from 'uuid';
+import Cookies from 'js-cookie';
+
+const CardContainer = ({ kanbanData: startData }) => {
+  const [newTodoTitle, setNewTodoTitle] = useState('');
+  const [newTodoDescription, setNewTodoDescription] = useState('');
+
+  const saveToCookies = (data) => {
+    Cookies.set('kanbanData', JSON.stringify(data), { expires: 7 });
+  };
+
+  const getFromCookies = () => {
+    const savedData = Cookies.get('kanbanData');
+    return savedData ? JSON.parse(savedData) : startData;
+  };
+
+  const [kanbanData, setKanbanData] = useState(getFromCookies());
+
+  useEffect(() => {
+    saveToCookies(kanbanData);
+  }, [kanbanData]);
+
+  const handleAddTodo = () => {
+    const newTodo = {
+      id: uuidv4(),
+      title: newTodoTitle,
+      description: newTodoDescription,
+      todoStatus: 'Todo',
+    };
+
+    setKanbanData([...kanbanData, newTodo]);
+    setNewTodoTitle('');
+    setNewTodoDescription('');
+  };
+
+  const updateStatus = (id, newStatus) => {
+    const cardListTitles = {
+      'To Do': 'Todo',
+      'In Progress': 'InProgress',
+      'Done': 'Done',
+    };
+
+    const newKanbanData = kanbanData.map((card) => {
+      if (card.id === id) {
+        return {
+          ...card,
+          todoStatus: cardListTitles[newStatus],
+        };
+      }
+      return card;
+    });
+
+    setKanbanData(newKanbanData);
+  };
+
+  const deleteCard = (id) => {
+    setKanbanData(kanbanData.filter((card) => card.id !== id));
+  };
+
+  const handleDragEnd = ({ active, over }) => {
+    if (!over) return;
+
+    const { id: activeId } = active;
+    const { id: overId } = over;
+
+    if (overId === 'delete-card') {
+      deleteCard(activeId);
+    } else {
+      const overContainer = kanbanData.find(card => card.id === overId)?.todoStatus;
+
+      setKanbanData(kanbanData => {
+        const activeIndex = kanbanData.findIndex(card => card.id === activeId);
+        const overIndex = kanbanData.findIndex(card => card.id === overId);
+
+        const newKanbanData = [...kanbanData];
+        const [movedItem] = newKanbanData.splice(activeIndex, 1);
+
+        if (overContainer) {
+          movedItem.todoStatus = overContainer;
+        }
+
+        newKanbanData.splice(overIndex, 0, movedItem);
+        return newKanbanData;
+      });
+    }
+  };
+
+  return (
+    <DndContext onDragEnd={handleDragEnd}>
+      <div className='card-container-box'>
+        <div className='add-todo-container'>
+          <h2>Add a New Task</h2>
+          <input
+            type='text'
+            placeholder='Enter a title'
+            value={newTodoTitle}
+            onChange={(e) => setNewTodoTitle(e.target.value)}
+          />
+          <input
+            type='text'
+            placeholder='Enter a description'
+            value={newTodoDescription}
+            onChange={(e) => setNewTodoDescription(e.target.value)}
+          />
+          <button onClick={handleAddTodo}>Add Task</button>
+        </div>
+
+        <div className='card-list-container'>
+          <CardList
+            title='To Do'
+            kanbanData={kanbanData.filter((card) => card.todoStatus === 'Todo')}
+            setKanbanData={setKanbanData}
+            kanbanDataAll={kanbanData}
+          />
+
+          <CardList
+            title='In Progress'
+            kanbanData={kanbanData.filter((card) => card.todoStatus === 'InProgress')}
+            setKanbanData={setKanbanData}
+            kanbanDataAll={kanbanData}
+          />
+
+          <CardList
+            title='Done'
+            kanbanData={kanbanData.filter((card) => card.todoStatus === 'Done')}
+            setKanbanData={setKanbanData}
+            kanbanDataAll={kanbanData}
+          />
+        </div>
+
+        <DeleteCard />
+      </div>
+    </DndContext>
+  );
+};
+
+export default CardContainer;

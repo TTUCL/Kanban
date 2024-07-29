@@ -1,0 +1,57 @@
+.card-box {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 10px 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.card-title-todo {
+  width: 100%;
+  background-color: #2980b9;
+  color: white;
+  border-radius: 10px 10px 0 0;
+  padding: 10px;
+}
+
+.card-title-in-progress {
+  width: 100%;
+  background-color: #f39c12;
+  color: white;
+  border-radius: 10px 10px 0 0;
+  padding: 10px;
+}
+
+.card-title-done {
+  width: 100%;
+  background-color: #27ae60;
+  color: white;
+  border-radius: 10px 10px 0 0;
+  padding: 10px;
+}
+
+.card-title h2 {
+  margin: 0;
+  font-size: 1em;
+}
+
+.card-description {
+  width: 100%;
+  background-color: #ecf0f1;
+  padding: 10px;
+  border-radius: 0 0 10px 10px;
+}
+
+.card-description p {
+  margin: 0;
+  font-size: 0.9em;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .card-box {
+    margin: 10px 0;
+  }
+}
